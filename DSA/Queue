@@ -1,0 +1,32 @@
+#include <iostream>
+#include <queue>
+using namespace std;
+
+void interleave(queue<int> Q){
+    queue<int> Q2;
+    int n= Q.size()/2;
+    for (int i=0; i<n; i++){
+        Q2.push(Q.front());                     
+        Q.pop();
+    }
+    while(!Q2.empty()){
+        Q.push(Q2.front());
+        Q2.pop();
+        Q.push(Q.front());
+        Q.pop();
+    }
+    
+    while(!Q.empty()){
+        cout<<Q.front()<<' ';
+        Q.pop();
+    }
+}
+
+int main(){
+    queue<int> Q;
+    for(int i=1; i<=10;i++){
+        Q.push(i);
+    }
+    interleave(Q);
+    return 0;
+}
